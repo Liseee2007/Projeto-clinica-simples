@@ -1,0 +1,35 @@
+# Relatórios da clínica
+
+def relatorio_geral():
+    print("=== RELATÓRIO GERAL ===")
+    
+    print(f"Total de pacientes cadastrados: {len(pacientes)}")
+    print(f"Total de consultas agendadas: {len(consultas)}")
+    
+    entradas = sum(t["valor"] for t in financeiro if t["tipo"] == "entrada")
+    saidas = sum(t["valor"] for t in financeiro if t["tipo"] == "saida")
+    
+    print(f"Total de entradas: R$ {entradas:.2f}")
+    print(f"Total de saídas: R$ {saidas:.2f}")
+    print(f"Lucro: R$ {entradas - saidas:.2f}")
+    print()
+
+def relatorio_desempenho():
+    print("=== DESEMPENHO DA CLÍNICA ===")
+    
+    if len(consultas) == 0:
+        print("Sem dados suficientes.\n")
+        return
+    
+    media_consultas = len(consultas) / max(1, len(pacientes))
+    
+    print(f"Média de consultas por paciente: {media_consultas:.2f}")
+    
+    if media_consultas > 2:
+        print("Desempenho: ALTO 📈")
+    elif media_consultas > 1:
+        print("Desempenho: MÉDIO ⚖️")
+    else:
+        print("Desempenho: BAIXO 📉")
+    
+    print()

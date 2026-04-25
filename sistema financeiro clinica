@@ -1,0 +1,34 @@
+financeiro = []
+def registrar_transacao():
+    tipo = input("Digite o tipo (entrada/saida): ").lower()
+    descricao = input("Descrição: ")
+    valor = float(input("Valor: "))
+    
+    transacao = {
+        "tipo": tipo,
+        "descricao": descricao,
+        "valor": valor
+    }
+    
+    financeiro.append(transacao)
+    print("Transação registrada com sucesso!\n")
+
+def listar_transacoes():
+    if not financeiro:
+        print("Nenhuma transação registrada.\n")
+        return
+    
+    print("=== Transações ===")
+    for t in financeiro:
+        print(f"{t['tipo'].upper()} | {t['descricao']} | R$ {t['valor']:.2f}")
+    print()
+
+def saldo_total():
+    saldo = 0
+    for t in financeiro:
+        if t["tipo"] == "entrada":
+            saldo += t["valor"]
+        elif t["tipo"] == "saida":
+            saldo -= t["valor"]
+    
+    print(f"Saldo total: R$ {saldo:.2f}\n")
